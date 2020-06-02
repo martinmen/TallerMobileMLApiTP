@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TallerMobileTpMLApi</string>
+
+    <string name="no_internet">No hay conexión</string>
+    <string name="not_found">No se encontraron resultados</string>
+    <string name="server_error">Ocurrio un error en el servidor</string>
+    <string name="bad_request">Su solicitud fue incorrecta</string>
+    <string name="unknown_error">Error desconocido</string>
+    <string name="resource_not_found">No se encontro el recurso</string>
+    <string name="loading">Cargando</string>
 </resources>
