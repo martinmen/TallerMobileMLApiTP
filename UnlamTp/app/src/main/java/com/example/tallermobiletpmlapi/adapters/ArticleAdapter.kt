@@ -30,11 +30,24 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ViewHolder>() {
         articleList[position].let {
             article ->
             holder.itemView.ArticleDescription.text = articleList[position].title
-            holder.itemView.articlePrice.text = articleList[position].price.toString()
+            var currency = setCurrencyTipe(articleList[position].currency_id)
+            holder.itemView.articlePrice.text = currency.plus(articleList.get(position).price.toString())
+            holder.itemView.ArticleConditionTextView.text = articleList.get(position).condition
+            holder.itemView.ArticleaAviableQuantityTextView.text = if (articleList.get(position).available_quantity<10) { "Pocos disponibles" }else{"Disponibles: ".plus(articleList.get(position).available_quantity.toString())  } // Si llego con el tiempo lo hago de la manera correcta al mensaje
             Picasso.get()
                 .load(articleList[position].thumbnail.replace( "http", "https"))
                 .into(holder.itemView.articleImage)
 
         }
+    }
+
+    fun setCurrencyTipe (currencyId: String): String{
+        var currency = ""
+        when(currencyId){
+            "ARG" ->  currency = "$"
+            "USD" -> currency = "U\$S"
+            else -> currency = "$"
+        }
+        return currency
     }
 }

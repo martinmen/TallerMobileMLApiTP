@@ -8,26 +8,26 @@
 
     <EditText
         android:id="@+id/editTextBuscar"
-        android:layout_width="309dp"
-        android:layout_height="42dp"
+        android:layout_width="325dp"
+        android:layout_height="40dp"
         android:hint="Articulo a buscar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
         android:id="@+id/btnBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="88dp"
+        android:layout_height="38dp"
         android:text="Buscar"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextBuscar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/editTextBuscar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/editTextBuscar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/articleList"
