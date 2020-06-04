@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ArticleDetailActivity">
+
+    <ImageView
+        android:id="@+id/imageViewML"
+        android:layout_width="128dp"
+        android:layout_height="99dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--  <EditText
+        android:id="@+id/editTextProductoBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:hint="Producto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
+<!--    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        app:layout_constraintTop_toBottomOf="@+id/editTextProductoBuscar"
+        tools:layout_editor_absoluteX="-16dp" />-->
+
+    <!--    <ImageView
+            android:id="@+id/imageViewProducto"
+            android:layout_width="208dp"
+            android:layout_height="193dp"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewArticle" />-->
+
+    <!--    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/carouselViewImgProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
+            app:layout_constraintVertical_bias="0.455"
+            tools:listitem="@layout/img_article"/>-->
+
+    <!-- <androidx.viewpager.widget.ViewPager
+          android:id="@+id/viewPagerImgProduct"
+          android:layout_width="225dp"
+          android:layout_height="223dp"
+          app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
+          app:layout_constraintVertical_bias="0.455">
+
+      </androidx.viewpager.widget.ViewPager>-->
+
+    <TextView
+        android:id="@+id/textViewArticleCondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conditions"
+        app:layout_constraintBottom_toTopOf="@+id/textViewArticle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct"
+        app:layout_constraintVertical_bias="0.17" />
+
+    <TextView
+        android:id="@+id/textViewArticleQuantitySold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity sold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewArticle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewArticleCondition"
+        app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct"
+        app:layout_constraintVertical_bias="0.17" />
+
+    <TextView
+        android:id="@+id/textViewArticle"
+        style="@style/EstiloArticleTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Titulo Articulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct" />
+
+    <TextView
+        android:id="@+id/textViewArticlePrice"
+        style="@style/EstiloArticlePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewArticle" />
+
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselViewImgProduct"
+        android:layout_width="322dp"
+        android:layout_height="336dp"
+        android:layout_marginTop="112dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnComprar"
+        android:layout_width="200dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="152dp"
+        android:text="@string/comprar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewArticlePrice"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnAgregarAlCarrito"
+        android:layout_width="200dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="104dp"
+        android:text="Agregar al carrito"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnComprar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnIrBuscarArticulos"
+        android:layout_width="151dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="672dp"
+        android:text="@string/ir_a_buscar_articulos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

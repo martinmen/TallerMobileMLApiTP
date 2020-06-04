@@ -8,4 +8,6 @@
     <string name="unknown_error">Error desconocido</string>
     <string name="resource_not_found">No se encontro el recurso</string>
     <string name="loading">Cargando</string>
+    <string name="comprar">Comprar</string>
+    <string name="ir_a_buscar_articulos">Ir a Buscar articulos</string>
 </resources>
