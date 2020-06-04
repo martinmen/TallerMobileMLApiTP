@@ -1,15 +1,18 @@
 package com.example.tallermobiletpmlapi
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebastp.data.Api
 import com.example.tallermobiletpmlapi.entities.SearchResult
 import com.example.tptallerdiseniomlapi.adapters.ArticleAdapter
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 //import kotlinx.android.synthetic.main.activity_main.btnBuscar
 import kotlinx.android.synthetic.main.item_article.view.*
@@ -19,6 +22,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
+    private val cargaInicial = "Celulares" // Para que muestre un resultado por defecto (No salve los datos para mantener la busqueda anterior)
     private var currentSearch: SearchResult? = null
     private var currentSearchTerm: String = ""
     private var adapter = ArticleAdapter(this)
@@ -26,7 +30,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
 
+        navigationView.setOnNavigationItemSelectedListener {
+            item ->
+            when(item.itemId){
+                R.id.busquedaNav ->{intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)}
+
+                R.id.detalleNav ->  {intent = Intent(this,ArticleDetailActivity::class.java)
+                    intent.putExtra("idArticle", "MLA825678604")
+                    startActivity(intent)}
+
+            }
+            true
+        }
         /*Proximamente lo pondre en un Nav Bar con algunas otras opciones de vista (Favoritos, carrito etc)*/
         searchViewArticle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -58,6 +76,12 @@ class MainActivity : AppCompatActivity() {
         }
         //  articleList.setOnClickListener { articleList.ArticleDescription.setOnClickListener {val intent = Intent(this, ArticleDetailActivity::class.java)
         //  startActivity(intent)  } }
+
+
+        //CARGA POR DEFECTO cada vez q se crea la vista (para simular un busquedas recientes o recomendadas)
+if(currentSearch== null) search(cargaInicial)
+
+
     }
 
 

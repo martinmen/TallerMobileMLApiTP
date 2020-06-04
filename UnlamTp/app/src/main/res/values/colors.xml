@@ -5,4 +5,14 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorArticleTitle">#FF0057</color>
     <color name="colorArticlePrice">#FF5722</color>
+
+
+<!--BTN COLORS-->
+    <color name="colorBtnTextAgregarCarrito">#3483FA</color>
+    <color name="colorBtnBackGroundComprar">#3483FA</color>
+
+
+    <color name="colorSplashScreen">#FFEB3B</color>
+
+
 </resources>

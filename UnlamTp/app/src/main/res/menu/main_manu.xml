@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!--    https://i0.pngocean.com/files/781/827/682/netpbm-format-menu-hamburger-button-menu-thumb.jpg-->
+
+    <item
+        android:id="@+id/carritoNav"
+        android:title="Carrito"
+        android:icon="@drawable/ic_add_shopping_cart"
+        />
+
+    <item
+        android:id="@+id/detalleNav"
+        android:icon="@drawable/ic_details_black"
+        android:title="@string/detalle" />
+
+    <item
+        android:icon="@drawable/ic_search_black"
+        android:id="@+id/busquedaNav"
+        android:title="@string/ir_busqueda">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/irSearchView"
+            android:layout_width="202dp"
+            android:layout_height="44dp"
+            android:hint="Articulo a buscar"
+            android:inputType="text" />
+    </item>
+
+
+</menu>

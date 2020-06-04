@@ -3,10 +3,12 @@ package com.example.tallermobiletpmlapi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.pruebastp.data.Api
 import com.example.pruebastp.data.Article
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
@@ -35,6 +37,29 @@ class ArticleDetailActivity : AppCompatActivity() {
         Picasso.get()
             .load("https://http2.mlstatic.com/frontend-assets/ui-navigation/5.6.0/mercadolibre/logo__large_plus.png")
             .into(imageViewML)
+
+
+
+
+
+        val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
+
+        navigationView.setOnNavigationItemSelectedListener {
+                item ->
+            when(item.itemId){
+                R.id.busquedaNav ->{intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)}
+
+                R.id.detalleNav ->  {intent = Intent(this,ArticleDetailActivity::class.java)
+                    intent.putExtra("idArticle", "MLA825678604")
+                    startActivity(intent)}
+
+            }
+            true
+        }
+
+
+
 
         val carouselView = findViewById(R.id.carouselViewImgProduct) as CarouselView;
         carouselView.setPageCount(Imagenes.size); // Esto tiene que venir si o si con algo sino no me carga el carrousel. (Por ahora lo dejo asi porque esto seguramente lo llamare de la vista de busquedas

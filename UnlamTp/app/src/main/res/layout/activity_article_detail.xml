@@ -10,57 +10,21 @@
         android:id="@+id/imageViewML"
         android:layout_width="128dp"
         android:layout_height="99dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--  <EditText
-        android:id="@+id/editTextProductoBuscar"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btnNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:hint="Producto"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
-<!--    <Button
-        android:id="@+id/btnBuscar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Buscar"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProductoBuscar"
-        tools:layout_editor_absoluteX="-16dp" />-->
-
-    <!--    <ImageView
-            android:id="@+id/imageViewProducto"
-            android:layout_width="208dp"
-            android:layout_height="193dp"
-            android:layout_marginTop="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.453"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewArticle" />-->
-
-    <!--    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/carouselViewImgProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
-            app:layout_constraintVertical_bias="0.455"
-            tools:listitem="@layout/img_article"/>-->
-
-    <!-- <androidx.viewpager.widget.ViewPager
-          android:id="@+id/viewPagerImgProduct"
-          android:layout_width="225dp"
-          android:layout_height="223dp"
-          app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
-          app:layout_constraintVertical_bias="0.455">
-
-      </androidx.viewpager.widget.ViewPager>-->
+        android:background="@android:color/holo_orange_light"
+        app:layout_constraintBottom_toTopOf="@+id/searchViewArticle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:menu="@menu/main_manu" />
 
     <TextView
         android:id="@+id/textViewArticleCondition"
@@ -113,37 +77,40 @@
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselViewImgProduct"
         android:layout_width="322dp"
-        android:layout_height="336dp"
-        android:layout_marginTop="112dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnComprar"
+        style="@style/EstiloBtnComprar"
         android:layout_width="200dp"
         android:layout_height="43dp"
-        android:layout_marginBottom="152dp"
         android:text="@string/comprar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewArticlePrice"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.92" />
 
     <Button
         android:id="@+id/btnAgregarAlCarrito"
         android:layout_width="200dp"
         android:layout_height="43dp"
         android:layout_marginBottom="104dp"
-        android:text="Agregar al carrito"
+        android:text="@string/agregar_al_carrito"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnComprar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/EstiloBtnAgregarAlCarrito"
+        />
 
     <Button
         android:id="@+id/btnIrBuscarArticulos"
@@ -151,9 +118,57 @@
         android:layout_height="59dp"
         android:layout_marginBottom="672dp"
         android:text="@string/ir_a_buscar_articulos"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+    <!--  <EditText
+    android:id="@+id/editTextProductoBuscar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="116dp"
+    android:hint="Producto"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button
+            android:id="@+id/btnBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            app:layout_constraintTop_toBottomOf="@+id/editTextProductoBuscar"
+            tools:layout_editor_absoluteX="-16dp" />-->
+    <!--    <ImageView
+            android:id="@+id/imageViewProducto"
+            android:layout_width="208dp"
+            android:layout_height="193dp"
+            android:layout_marginTop="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.453"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewArticle" />-->
+
+    <!--    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/carouselViewImgProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
+            app:layout_constraintVertical_bias="0.455"
+            tools:listitem="@layout/img_article"/>-->
+
+    <!-- <androidx.viewpager.widget.ViewPager
+          android:id="@+id/viewPagerImgProduct"
+          android:layout_width="225dp"
+          android:layout_height="223dp"
+          app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
+          app:layout_constraintVertical_bias="0.455">
+
+      </androidx.viewpager.widget.ViewPager>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,21 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--
-    <EditText
-        android:id="@+id/editTextBuscar"
-        android:layout_width="325dp"
-        android:layout_height="40dp"
-        android:hint="Articulo a buscar"
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btnNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/main_manu" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchViewArticle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="544dp"
+        android:autofillHints="Buscar articulo deseado"
+        android:background="#ECEFE8E8"
+        android:inputType="text"
+        app:defaultQueryHint="Articulo a buscar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintTop_toBottomOf="@+id/btnNavigation"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/articleList"
+        android:layout_width="372dp"
+        android:layout_height="697dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewArticle"
+        app:layout_constraintVertical_bias="0.881"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_article" />
+
+    <Button
+        android:id="@+id/btnIrDetalleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalle View"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewArticle" />
+    <!--
+  <EditText
+      android:id="@+id/editTextBuscar"
+      android:layout_width="325dp"
+      android:layout_height="40dp"
+      android:hint="Articulo a buscar"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.023" />
 -->
 
- <!--   <Button
+    <!--   <Button
         android:id="@+id/btnBuscar"
         android:layout_width="88dp"
         android:layout_height="38dp"
@@ -31,38 +81,4 @@
         app:layout_constraintStart_toEndOf="@+id/editTextBuscar"
         app:layout_constraintTop_toTopOf="@+id/editTextBuscar" />-->
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchViewArticle"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="Articulo a buscar"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
-
-    <Button
-        android:id="@+id/btnIrDetalleView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detalle View"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.945"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchViewArticle" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/articleList"
-        android:layout_width="371dp"
-        android:layout_height="629dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIrDetalleView"
-        app:layout_constraintVertical_bias="0.0"
-        tools:itemCount="5"
-        tools:listitem="@layout/item_article" />
 </androidx.constraintlayout.widget.ConstraintLayout>
