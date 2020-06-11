@@ -1,6 +1,6 @@
 package com.example.tallermobiletpmlapi
 
-import android.app.ProgressDialog.show
+import Results
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,37 +14,37 @@ import com.example.tallermobiletpmlapi.entities.SearchResult
 import com.example.tptallerdiseniomlapi.adapters.ArticleAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-//import kotlinx.android.synthetic.main.activity_main.btnBuscar
-import kotlinx.android.synthetic.main.item_article.view.*
 import retrofit2.Call
 import retrofit2.Response
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private val cargaInicial = "Celulares" // Para que muestre un resultado por defecto (No salve los datos para mantener la busqueda anterior)
     private var currentSearch: SearchResult? = null
     private var currentSearchTerm: String = ""
-    private var adapter = ArticleAdapter(this)
+    private var adapter = ArticleAdapter({ result -> handleOnItemViewClick(result) })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
+        val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
+        navigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.busquedaNav -> {
+                    intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
 
-        navigationView.setOnNavigationItemSelectedListener {
-            item ->
-            when(item.itemId){
-                R.id.busquedaNav ->{intent = Intent(this,MainActivity::class.java)
-                    startActivity(intent)}
-
-                R.id.detalleNav ->  {intent = Intent(this,ArticleDetailActivity::class.java)
+                R.id.detalleNav -> {
+                    intent = Intent(this, ArticleDetailActivity::class.java)
                     intent.putExtra("idArticle", "MLA825678604")
-                    startActivity(intent)}
+                    startActivity(intent)
+                }
 
             }
             true
         }
+
         /*Proximamente lo pondre en un Nav Bar con algunas otras opciones de vista (Favoritos, carrito etc)*/
         searchViewArticle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -58,11 +58,6 @@ val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationV
             }
 
         })
-        /* btnBuscar.setOnClickListener {
-             search(editTextBuscar?.text.toString())
-         }*/
-
-
 
         articleList.layoutManager = LinearLayoutManager(this)
         articleList.adapter = adapter
@@ -74,16 +69,9 @@ val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationV
             intent.putExtra("idArticle", "MLA825678604")
             startActivity(intent)
         }
-        //  articleList.setOnClickListener { articleList.ArticleDescription.setOnClickListener {val intent = Intent(this, ArticleDetailActivity::class.java)
-        //  startActivity(intent)  } }
-
-
-        //CARGA POR DEFECTO cada vez q se crea la vista (para simular un busquedas recientes o recomendadas)
-if(currentSearch== null) search(cargaInicial)
-
+        if (currentSearch == null) search(cargaInicial) //CARGA POR DEFECTO cada vez q se crea la vista (para simular un busquedas recientes o recomendadas)
 
     }
-
 
     private fun search(q: String) {
         currentSearchTerm = q
@@ -91,8 +79,6 @@ if(currentSearch== null) search(cargaInicial)
         Api().getListArticle(q, object : retrofit2.Callback<SearchResult> {
 
             override fun onFailure(call: Call<SearchResult>, t: Throwable) {
-                //      Snackbar.make(mainContainer, R.string.no_internet, Snackbar.LENGTH_LONG).show()
-                //   toggleLoading()
                 Log.e(TAG, "Search call failed", t)
             }
 
@@ -137,9 +123,6 @@ if(currentSearch== null) search(cargaInicial)
                 }
             }
         })
-
-        //)
-
     }
 
     private fun setAlbumValues(body: SearchResult) {
@@ -157,6 +140,13 @@ if(currentSearch== null) search(cargaInicial)
         }
 
         adapter.notifyDataSetChanged()
+    }
+
+    private fun handleOnItemViewClick(result: Results) {
+        val intent = Intent(this, ArticleDetailActivity::class.java)
+        intent.putExtra("idArticle", result.id)
+        startActivity(intent)
+
     }
 
     companion object {

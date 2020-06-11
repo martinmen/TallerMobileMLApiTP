@@ -20,29 +20,25 @@
         android:id="@+id/searchViewArticle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="544dp"
         android:autofillHints="Buscar articulo deseado"
         android:background="#ECEFE8E8"
         android:inputType="text"
         app:defaultQueryHint="Articulo a buscar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNavigation"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/btnNavigation" />
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/articleList"
-        android:layout_width="372dp"
-        android:layout_height="697dp"
+        android:layout_width="354dp"
+        android:layout_height="559dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchViewArticle"
-        app:layout_constraintVertical_bias="0.881"
+        app:layout_constraintVertical_bias="0.0"
         tools:itemCount="5"
         tools:listitem="@layout/item_article" />
 
