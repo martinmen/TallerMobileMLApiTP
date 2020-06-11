@@ -53,6 +53,15 @@ class ArticleDetailActivity : AppCompatActivity() {
             }
             true
         }
+        imgBtnShare.setOnClickListener {
+            val sendIntent : Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT,current!!.permalink)
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent,"Compartir producto mediante:")
+            startActivity(shareIntent)
+        }
 
         val carouselView = findViewById(R.id.carouselViewImgProduct) as CarouselView;
         carouselView.setPageCount(Imagenes.size);

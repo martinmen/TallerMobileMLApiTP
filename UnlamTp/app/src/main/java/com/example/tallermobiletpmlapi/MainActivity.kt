@@ -61,14 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         articleList.layoutManager = LinearLayoutManager(this)
         articleList.adapter = adapter
-        btnIrDetalleView.setOnClickListener {
-            val intent = Intent(
-                this,
-                ArticleDetailActivity::class.java
-            ) //Esto lo deberia hacer en el ArticleAdapter pero todavia no le encontre la vuelta para implementarlo
-            intent.putExtra("idArticle", "MLA825678604")
-            startActivity(intent)
-        }
+
         if (currentSearch == null) search(cargaInicial) //CARGA POR DEFECTO cada vez q se crea la vista (para simular un busquedas recientes o recomendadas)
 
     }

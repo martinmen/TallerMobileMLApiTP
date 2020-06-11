@@ -18,10 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ArticleDetailActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".ArticleDetailActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".MainActivity" />
 
     </application>
 
