@@ -5,12 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.pruebastp.data.Api
 import com.example.tallermobiletpmlapi.entities.Article
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 import com.synnapps.carouselview.ImageListener
@@ -36,32 +34,32 @@ class ArticleDetailActivity : AppCompatActivity() {
             IdArticle = bundle.getString("idArticle").toString()
         }
         Picasso.get()
-            .load("https://http2.mlstatic.com/frontend-assets/ui-navigation/5.6.0/mercadolibre/logo__large_plus.png")
+            .load(getString(R.string.logoMeliImg))
             .into(imageViewML)
 
- /*       val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
-        navigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.busquedaNav -> {
-                    intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
-                R.id.detalleNav -> {
-                    intent = Intent(this, ArticleDetailActivity::class.java)
-                    intent.putExtra("idArticle", IdArticle)
-                    startActivity(intent)
-                }
-            }
-            true
-        }*/
+        /*       val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
+               navigationView.setOnNavigationItemSelectedListener { item ->
+                   when (item.itemId) {
+                       R.id.busquedaNav -> {
+                           intent = Intent(this, MainActivity::class.java)
+                           startActivity(intent)
+                       }
+                       R.id.detalleNav -> {
+                           intent = Intent(this, ArticleDetailActivity::class.java)
+                           intent.putExtra("idArticle", IdArticle)
+                           startActivity(intent)
+                       }
+                   }
+                   true
+               }*/
 
         imgBtnShare.setOnClickListener {
-            val sendIntent : Intent = Intent().apply {
+            val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT,current!!.permalink)
+                putExtra(Intent.EXTRA_TEXT, current!!.permalink)
                 type = "text/plain"
             }
-            val shareIntent = Intent.createChooser(sendIntent,getString(R.string.compartirMensaje))
+            val shareIntent = Intent.createChooser(sendIntent, getString(R.string.compartirMensaje))
             startActivity(shareIntent)
         }
 
@@ -90,14 +88,17 @@ class ArticleDetailActivity : AppCompatActivity() {
                     textViewArticlePrice.text = "$ ${article?.price.toString()}"
                     textViewArticleCondition.text =
                         if (article?.condition.equals("new")) getString(R.string.estadoNuevoArticulo) else getString(
-                                                    R.string.estadoUsadoArticulo)
+                            R.string.estadoUsadoArticulo
+                        )
                     textViewArticleQuantitySold.text =
                         getString(R.string.vendidos).plus(article?.sold_quantity.toString())
                     current = response.body()
                     lateinit var imagesArray: Array<String>
                 } else {
                     Toast.makeText(
-                        this@ArticleDetailActivity, getString(R.string.errorArticuloNoEncontrado), Toast.LENGTH_LONG
+                        this@ArticleDetailActivity,
+                        getString(R.string.errorArticuloNoEncontrado),
+                        Toast.LENGTH_LONG
                     ).show()
                 }
             }
@@ -106,25 +107,28 @@ class ArticleDetailActivity : AppCompatActivity() {
 
     }
 
+    fun buscarDesc() {
+        Api().getArticleDescription(IdArticle, object : Callback<Array<DescriptionArticle>> {
+            override fun onFailure(call: Call<Array<DescriptionArticle>>, t: Throwable) {
+                Log.e(TAG, "Search call failed", t)
+            }
 
-fun buscarDesc(){
-    Api().getArticleDescription(IdArticle, object : Callback<DescriptionArticle> {
-        override fun onFailure(call: Call<DescriptionArticle>, t: Throwable) {
-            Log.e(TAG, "Search call failed", t)
-        }
+            override fun onResponse(
+                call: Call<Array<DescriptionArticle>>,
+                response: Response<Array<DescriptionArticle>>
+            ) {
 
-        override fun onResponse(call: Call<DescriptionArticle>, response: Response<DescriptionArticle>) {
+                if (response.isSuccessful) {
+                    var articleDesc = response.body()
+                    textViewArticleDescriptionBody.text = "${articleDesc?.get(0)?.plain_text}"
 
-            if (response.isSuccessful) {
-                var articleDesc = response.body()
-                textViewArticleDescriptionBody.text = "${articleDesc?.plain_text}"
+                }
 
             }
 
-        }
+        })
+    }
 
-    })
-}
     companion object {
         val TAG = ArticleDetailActivity::class.simpleName
         val CURRENT_SEARCH_KEY = "CURRENT_SEARCH_KEY"
@@ -135,7 +139,7 @@ fun buscarDesc(){
         override fun setImageForPosition(position: Int, imageView: ImageView) {
             //var verImagen = arrayOf(current?.pictures?.get(position)?.secure_url)
             Picasso.get()
-                .load(Imagenes.get(position)) // solo me muestra la ultima, nose si las demas no cargan porq. Me trae al buscar por segunda vez.
+                .load(Imagenes.get(position))
                 .fit()
                 .into(imageView)
         }

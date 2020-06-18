@@ -49,8 +49,6 @@ class ArticleAdapter(val onItemDetailViewClick: (articulos: Results) -> Unit) :
                 .into(holder.itemView.articleImage)
             holder.itemView.setOnClickListener {
                 onItemDetailViewClick(articleList[position])
-
-
                 /*Hacerlo desde aca condiciona a mi adapter*/
                 //    val intent = Intent(holder.itemView.context,ArticleDetailActivity::class.java)
                 //    startActivity(holder.itemView.context,intent,null)

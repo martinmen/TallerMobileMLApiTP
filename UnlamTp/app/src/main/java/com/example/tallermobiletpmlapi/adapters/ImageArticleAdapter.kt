@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.image_detail.view.*
 class ImageArticleAdapter : RecyclerView.Adapter<ImageArticleAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
     var picturesList = ArrayList<Pictures>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,7 +23,7 @@ class ImageArticleAdapter : RecyclerView.Adapter<ImageArticleAdapter.ViewHolder>
     }
 
     override fun getItemCount(): Int {
-      return picturesList.size
+        return picturesList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
