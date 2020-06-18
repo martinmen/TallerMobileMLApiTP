@@ -2,7 +2,7 @@
 
 <androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:menu="@menu/main_manu" />
+        app:menu="@menu/main_manu" />-->
 
     <TextView
         android:id="@+id/textViewArticleCondition"
@@ -66,18 +66,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct" />
 
-
     <TextView
-        android:id="@+id/textViewArticleDescription"
+        android:id="@+id/textViewDescriptionTitle"
         style="@style/EstiloArticleTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Descripcion Articulo"
+        android:layout_marginTop="76dp"
+        android:text="@string/descripcionTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewArticle" />
+
+    <TextView
+        android:id="@+id/textViewArticleDescriptionBody"
+        style="@style/EstiloArticleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Descripcion Articulo"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionTitle" />
 
     <TextView
         android:id="@+id/textViewArticlePrice"

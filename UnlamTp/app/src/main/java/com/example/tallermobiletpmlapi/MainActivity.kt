@@ -27,124 +27,125 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
+/*      val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
         navigationView.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.busquedaNav -> {
-                    intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                }
+          when (item.itemId) {
+              R.id.busquedaNav -> {
+                  intent = Intent(this, MainActivity::class.java)
+                  startActivity(intent)
+              }
 
-                R.id.detalleNav -> {
-                    intent = Intent(this, ArticleDetailActivity::class.java)
-                    intent.putExtra("idArticle", "MLA825678604")
-                    startActivity(intent)
-                }
+              R.id.detalleNav -> {
+                  intent = Intent(this, ArticleDetailActivity::class.java)
+                  intent.putExtra("idArticle", "MLA825678604")
+                  startActivity(intent)
+              }
 
-            }
-            true
-        }
+          }
+          true
+      }*/
 
-        /*Proximamente lo pondre en un Nav Bar con algunas otras opciones de vista (Favoritos, carrito etc)*/
-        searchViewArticle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                search(query.toString())
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+      /*Proximamente lo pondre en un Nav Bar con algunas otras opciones de vista (Favoritos, carrito etc)*/
+      searchViewArticle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+          override fun onQueryTextSubmit(query: String?): Boolean {
+              search(query.toString())
+              return false
+          }
 
-            }
+          override fun onQueryTextChange(newText: String?): Boolean {
+              return false
 
-        })
+          }
 
-        articleList.layoutManager = LinearLayoutManager(this)
-        articleList.adapter = adapter
+      })
 
-        if (currentSearch == null) search(cargaInicial) //CARGA POR DEFECTO cada vez q se crea la vista (para simular un busquedas recientes o recomendadas)
+      articleList.layoutManager = LinearLayoutManager(this)
+      articleList.adapter = adapter
 
-    }
+      if (currentSearch == null) search(cargaInicial) //CARGA POR DEFECTO cada vez q se crea la vista (para simular un busquedas recientes o recomendadas)
 
-    private fun search(q: String) {
-        currentSearchTerm = q
-        Log.i(TAG, "Search method called with q: $q")
-        Api().getListArticle(q, object : retrofit2.Callback<SearchResult> {
+  }
 
-            override fun onFailure(call: Call<SearchResult>, t: Throwable) {
-                Log.e(TAG, "Search call failed", t)
-            }
+  private fun search(q: String) {
+      currentSearchTerm = q
+      Log.i(TAG, "Search method called with q: $q")
+      Api().getListArticle(q, object : retrofit2.Callback<SearchResult> {
 
-            override fun onResponse(
-                call: Call<SearchResult>,
-                response: Response<SearchResult>
-            ) {
-                Log.i(
-                    TAG,
-                    "The response of search call was:\ncode: ${response.code()}\nbody: ${response.body()
-                        ?.toString()}"
-                )
-                when (response.code()) {
-                    in 200..299 -> {
-                        currentSearch = response.body()!!
-                        setAlbumValues(response.body()!!)
-                    }
-                    404 -> Toast.makeText(
-                        this@MainActivity,
-                        R.string.resource_not_found,
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                    400 -> Toast.makeText(
-                        this@MainActivity,
-                        R.string.bad_request,
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                    in 500..599 -> Toast.makeText(
-                        this@MainActivity,
-                        R.string.server_error,
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                    else -> Toast.makeText(
-                        this@MainActivity,
-                        R.string.unknown_error,
-                        Toast.LENGTH_LONG
-                    )
-                        .show()
-                }
-            }
-        })
-    }
+          override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+              Log.e(TAG, "Search call failed", t)
+          }
 
-    private fun setAlbumValues(body: SearchResult) {
-        if (body.paging.total > 0) {
-            adapter.articleList = body.results
-        } else {
-            adapter.articleList = ArrayList()
+          override fun onResponse(
+              call: Call<SearchResult>,
+              response: Response<SearchResult>
+          ) {
+              Log.i(
+                  TAG,
+                  "The response of search call was:\ncode: ${response.code()}\nbody: ${response.body()
+                      ?.toString()}"
+              )
+              when (response.code()) {
+                  in 200..299 -> {
+                      currentSearch = response.body()!!
+                      setAlbumValues(response.body()!!)
+                  }
+                  404 -> Toast.makeText(
+                      this@MainActivity,
+                      R.string.resource_not_found,
+                      Toast.LENGTH_LONG
+                  )
+                      .show()
+                  400 -> Toast.makeText(
+                      this@MainActivity,
+                      R.string.bad_request,
+                      Toast.LENGTH_LONG
+                  )
+                      .show()
+                  in 500..599 -> Toast.makeText(
+                      this@MainActivity,
+                      R.string.server_error,
+                      Toast.LENGTH_LONG
+                  )
+                      .show()
+                  else -> Toast.makeText(
+                      this@MainActivity,
+                      R.string.unknown_error,
+                      Toast.LENGTH_LONG
+                  )
+                      .show()
+              }
+          }
+      })
+  }
 
-            Toast.makeText(
-                this@MainActivity,
-                R.string.not_found,
-                Toast.LENGTH_LONG
-            )
-                .show()
-        }
+  private fun setAlbumValues(body: SearchResult) {
+      if (body.paging.total > 0) {
+          adapter.articleList = body.results
+      } else {
+          adapter.articleList = ArrayList()
 
-        adapter.notifyDataSetChanged()
-    }
+          Toast.makeText(
+              this@MainActivity,
+              R.string.not_found,
+              Toast.LENGTH_LONG
+          )
+              .show()
+      }
 
-    private fun handleOnItemViewClick(result: Results) {
-        val intent = Intent(this, ArticleDetailActivity::class.java)
-        intent.putExtra("idArticle", result.id)
-        startActivity(intent)
+      adapter.notifyDataSetChanged()
+  }
 
-    }
+  private fun handleOnItemViewClick(result: Results) {
+      val intent = Intent(this, ArticleDetailActivity::class.java)
+      intent.putExtra("idArticle", result.id)
+      startActivity(intent)
 
-    companion object {
-        val TAG = MainActivity::class.simpleName
-        val CURRENT_SEARCH_KEY = "CURRENT_SEARCH_KEY"
-        val CURRENT_SEARCH_TERM = "CURRENT_SEARCH_TERM"
-    }
+  }
+
+  companion object {
+      val TAG = MainActivity::class.simpleName
+      val CURRENT_SEARCH_KEY = "CURRENT_SEARCH_KEY"
+      val CURRENT_SEARCH_TERM = "CURRENT_SEARCH_TERM"
+  }
 }

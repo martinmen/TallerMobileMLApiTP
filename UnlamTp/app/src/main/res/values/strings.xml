@@ -17,4 +17,12 @@
     <string name="estadoNuevoArticulo">Nuevo-</string>
     <string name="estadoUsadoArticulo">Usado-</string>
     <string name="errorArticuloNoEncontrado">Articulo no encontrado</string>
+    <string name="vendidos">Vendidos: </string>
+    <string name="content_description_more">desc</string>
+    <string name="content_description_search">searrcch</string>
+    <string name="content_description_favorite">favoritees</string>
+    <string name="more">moree</string>
+    <string name="search">searchh</string>
+    <string name="favorite">favvv</string>
+    <string name="descripcionTitle">Descripcion:</string>
 </resources>

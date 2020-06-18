@@ -7,40 +7,61 @@
     tools:context=".MainActivity">
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btnNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/main_manu" />
+        app:menu="@menu/main_manu" />-->
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchViewArticle"
+
+    <!--   <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:autofillHints="Buscar articulo deseado"
-        android:background="#ECEFE8E8"
-        android:inputType="text"
-        app:defaultQueryHint="Articulo a buscar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNavigation" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/searchViewArticle">
 
+    </com.google.android.material.appbar.AppBarLayout>-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/articleList"
-        android:layout_width="354dp"
-        android:layout_height="559dp"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchViewArticle"
-        app:layout_constraintVertical_bias="0.0"
-        tools:itemCount="5"
-        tools:listitem="@layout/item_article" />
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewArticle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ECEFE8E8"
+            android:inputType="text"
+            app:defaultQueryHint="Articulo a buscar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.009" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/articleList"
+            android:layout_width="415dp"
+            android:layout_height="542dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchViewArticle"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_article"
+            android:layout_weight="1"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <!--

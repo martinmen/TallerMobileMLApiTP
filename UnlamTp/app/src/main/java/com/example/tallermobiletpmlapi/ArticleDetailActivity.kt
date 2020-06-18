@@ -39,7 +39,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             .load("https://http2.mlstatic.com/frontend-assets/ui-navigation/5.6.0/mercadolibre/logo__large_plus.png")
             .into(imageViewML)
 
-        val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
+ /*       val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
         navigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.busquedaNav -> {
@@ -53,7 +53,8 @@ class ArticleDetailActivity : AppCompatActivity() {
                 }
             }
             true
-        }
+        }*/
+
         imgBtnShare.setOnClickListener {
             val sendIntent : Intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -91,7 +92,7 @@ class ArticleDetailActivity : AppCompatActivity() {
                         if (article?.condition.equals("new")) getString(R.string.estadoNuevoArticulo) else getString(
                                                     R.string.estadoUsadoArticulo)
                     textViewArticleQuantitySold.text =
-                        "Vendidos: ${article?.sold_quantity.toString()}"
+                        getString(R.string.vendidos).plus(article?.sold_quantity.toString())
                     current = response.body()
                     lateinit var imagesArray: Array<String>
                 } else {
@@ -116,7 +117,7 @@ fun buscarDesc(){
 
             if (response.isSuccessful) {
                 var articleDesc = response.body()
-                textViewArticleDescription.text = "${articleDesc?.plain_text}"
+                textViewArticleDescriptionBody.text = "${articleDesc?.plain_text}"
 
             }
 
