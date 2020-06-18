@@ -1,4 +1,4 @@
-package com.example.pruebastp.data
+package com.example.tallermobiletpmlapi.entities
 
 import com.example.tptallerdiseniomlapi.entities.Pictures
 import com.google.gson.annotations.SerializedName

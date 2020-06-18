@@ -1,5 +1,7 @@
-package com.example.pruebastp.data
 
+
+import com.example.tallermobiletpmlapi.entities.Article
+import com.example.tallermobiletpmlapi.entities.DescriptionArticle
 import com.example.tallermobiletpmlapi.entities.SearchResult
 import retrofit2.Call
 import retrofit2.http.GET
@@ -10,6 +12,9 @@ interface MercadoLibreAPI{
 
 @GET("items/{itemId}")
 fun getitem(@Path("itemId") itemId:String): Call<Article>
+
+    @GET("items/{id}")
+    fun getitemDescription(@Path("id") itemId:String): Call<DescriptionArticle>
 
     @GET("sites/MLA/search")
     fun search(@Query("q") q: String): Call<SearchResult>

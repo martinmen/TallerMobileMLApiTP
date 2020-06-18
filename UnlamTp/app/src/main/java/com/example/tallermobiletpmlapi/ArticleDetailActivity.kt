@@ -1,5 +1,6 @@
 package com.example.tallermobiletpmlapi
 
+import com.example.tallermobiletpmlapi.entities.DescriptionArticle
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.pruebastp.data.Api
-import com.example.pruebastp.data.Article
+import com.example.tallermobiletpmlapi.entities.Article
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
@@ -71,6 +72,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
         buscarConCarrusel()
+        buscarDesc()
     }
 
     private fun buscarConCarrusel() {
@@ -98,8 +100,29 @@ class ArticleDetailActivity : AppCompatActivity() {
                 }
             }
         })
+
+
     }
 
+
+fun buscarDesc(){
+    Api().getArticleDescription(IdArticle.plus("/descriptions"), object : Callback<DescriptionArticle> {
+        override fun onFailure(call: Call<DescriptionArticle>, t: Throwable) {
+            Log.e(TAG, "Search call failed", t)
+        }
+
+        override fun onResponse(call: Call<DescriptionArticle>, response: Response<DescriptionArticle>) {
+
+            if (response.isSuccessful) {
+                var articleDesc = response.body()
+                textViewArticleDescription.text = "${articleDesc?.plain_text}"
+
+            }
+
+        }
+
+    })
+}
     companion object {
         val TAG = ArticleDetailActivity::class.simpleName
         val CURRENT_SEARCH_KEY = "CURRENT_SEARCH_KEY"

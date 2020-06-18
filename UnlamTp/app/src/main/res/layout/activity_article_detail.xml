@@ -66,6 +66,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct" />
 
+
+    <TextView
+        android:id="@+id/textViewArticleDescription"
+        style="@style/EstiloArticleTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Descripcion Articulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct" />
+
     <TextView
         android:id="@+id/textViewArticlePrice"
         style="@style/EstiloArticlePrice"
@@ -80,13 +93,13 @@
 
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselViewImgProduct"
-        android:layout_width="322dp"
-        android:layout_height="450dp"
+        android:layout_width="320dp"
+        android:layout_height="407dp"
         android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </com.synnapps.carouselview.CarouselView>
 

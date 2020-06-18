@@ -4,7 +4,8 @@
     <item android:drawable="@color/colorSplashScreen"
         android:width="200dp"/>
     <item>
-        <bitmap android:src="@drawable/logo" android:gravity="center"
+        <bitmap android:src="@drawable/logo2" android:gravity="center_horizontal"
+
             />
     </item>
 </layer-list>
