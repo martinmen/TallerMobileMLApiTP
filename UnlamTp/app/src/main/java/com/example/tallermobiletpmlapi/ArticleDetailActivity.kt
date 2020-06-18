@@ -60,7 +60,7 @@ class ArticleDetailActivity : AppCompatActivity() {
                 putExtra(Intent.EXTRA_TEXT,current!!.permalink)
                 type = "text/plain"
             }
-            val shareIntent = Intent.createChooser(sendIntent,"Compartir producto mediante:")
+            val shareIntent = Intent.createChooser(sendIntent,getString(R.string.compartirMensaje))
             startActivity(shareIntent)
         }
 
@@ -76,7 +76,7 @@ class ArticleDetailActivity : AppCompatActivity() {
     }
 
     private fun buscarConCarrusel() {
-        Api().getArticle(IdArticle.toString(), object : Callback<Article> {
+        Api().getArticle(IdArticle, object : Callback<Article> {
 
             override fun onFailure(call: Call<Article>, t: Throwable) {
                 Log.e(TAG, "Search call failed", t)
@@ -88,14 +88,15 @@ class ArticleDetailActivity : AppCompatActivity() {
                     textViewArticle.text = "${article?.title}"
                     textViewArticlePrice.text = "$ ${article?.price.toString()}"
                     textViewArticleCondition.text =
-                        if (article?.condition.equals("new")) "Nuevo-" else "Usado-"
+                        if (article?.condition.equals("new")) getString(R.string.estadoNuevoArticulo) else getString(
+                                                    R.string.estadoUsadoArticulo)
                     textViewArticleQuantitySold.text =
                         "Vendidos: ${article?.sold_quantity.toString()}"
                     current = response.body()
                     lateinit var imagesArray: Array<String>
                 } else {
                     Toast.makeText(
-                        this@ArticleDetailActivity, "Articulo no encontrado", Toast.LENGTH_LONG
+                        this@ArticleDetailActivity, getString(R.string.errorArticuloNoEncontrado), Toast.LENGTH_LONG
                     ).show()
                 }
             }
@@ -106,7 +107,7 @@ class ArticleDetailActivity : AppCompatActivity() {
 
 
 fun buscarDesc(){
-    Api().getArticleDescription(IdArticle.plus("/descriptions"), object : Callback<DescriptionArticle> {
+    Api().getArticleDescription(IdArticle, object : Callback<DescriptionArticle> {
         override fun onFailure(call: Call<DescriptionArticle>, t: Throwable) {
             Log.e(TAG, "Search call failed", t)
         }

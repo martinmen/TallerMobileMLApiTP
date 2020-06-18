@@ -13,4 +13,8 @@
     <string name="agregar_al_carrito">Agregar al carrito</string>
     <string name="detalle">Detalle</string>
     <string name="ir_busqueda">Ir Busqueda</string>
+    <string name="compartirMensaje">Compartir producto mediante:</string>
+    <string name="estadoNuevoArticulo">Nuevo-</string>
+    <string name="estadoUsadoArticulo">Usado-</string>
+    <string name="errorArticuloNoEncontrado">Articulo no encontrado</string>
 </resources>

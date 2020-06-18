@@ -13,7 +13,7 @@ interface MercadoLibreAPI{
 @GET("items/{itemId}")
 fun getitem(@Path("itemId") itemId:String): Call<Article>
 
-    @GET("items/{id}")
+    @GET("items/{id}/descriptions")
     fun getitemDescription(@Path("id") itemId:String): Call<DescriptionArticle>
 
     @GET("sites/MLA/search")
