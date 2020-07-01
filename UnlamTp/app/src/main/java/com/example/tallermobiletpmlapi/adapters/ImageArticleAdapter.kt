@@ -29,10 +29,7 @@ class ImageArticleAdapter : RecyclerView.Adapter<ImageArticleAdapter.ViewHolder>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         picturesList[position].let { pictures ->
             Picasso.get()
-                .load(
-                    pictures.secure_url[position].toString()
-
-                )
+                .load(pictures.secure_url)
                 .into(holder.itemView.articleListImage)
         }
     }

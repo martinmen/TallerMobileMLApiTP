@@ -27,7 +27,7 @@ data class Article(
     @SerializedName("permalink") val permalink: String,
     @SerializedName("thumbnail") val thumbnail: String,
     @SerializedName("secure_thumbnail") val secure_thumbnail: String,
-    @SerializedName("pictures") val pictures: List<Pictures>,
+    @SerializedName("pictures") val pictures: ArrayList<Pictures>,
     @SerializedName("video_id") val video_id: String,
     //@SerializedName("descriptions") val descriptions : List<Descriptions>,
     @SerializedName("accepts_mercadopago") val accepts_mercadopago: Boolean,

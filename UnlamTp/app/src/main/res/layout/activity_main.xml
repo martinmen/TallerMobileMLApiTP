@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <!--    <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/btnNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_orange_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:menu="@menu/main_manu" />-->
-
-
-    <!--   <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/searchViewArticle">
-
-    </com.google.android.material.appbar.AppBarLayout>-->
-
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -62,31 +43,5 @@
             tools:itemCount="5"
             tools:listitem="@layout/item_article" />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    <!--
-  <EditText
-      android:id="@+id/editTextBuscar"
-      android:layout_width="325dp"
-      android:layout_height="40dp"
-      android:hint="Articulo a buscar"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.023" />
--->
-
-    <!--   <Button
-        android:id="@+id/btnBuscar"
-        android:layout_width="88dp"
-        android:layout_height="38dp"
-        android:text="Buscar"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextBuscar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/editTextBuscar"
-        app:layout_constraintTop_toTopOf="@+id/editTextBuscar" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,24 +11,6 @@
         android:layout_height="match_parent"
         tools:context=".ArticleDetailActivity">
 
-        <ImageView
-            android:id="@+id/imageViewML"
-            android:layout_width="128dp"
-            android:layout_height="99dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--    <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/btnNavigation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_orange_light"
-                app:layout_constraintBottom_toTopOf="@+id/searchViewArticle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:menu="@menu/main_manu" />-->
 
         <TextView
             android:id="@+id/textViewArticleCondition"
@@ -39,7 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct"
+            app:layout_constraintTop_toBottomOf="@+id/imagesArticleDetail"
             app:layout_constraintVertical_bias="0.164" />
 
         <TextView
@@ -51,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textViewArticleCondition"
-            app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct"
+            app:layout_constraintTop_toBottomOf="@+id/imagesArticleDetail"
             app:layout_constraintVertical_bias="0.17" />
 
         <TextView
@@ -59,12 +41,12 @@
             style="@style/EstiloArticleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="48dp"
             android:text="Titulo Articulo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct" />
+            app:layout_constraintTop_toBottomOf="@+id/imagesArticleDetail" />
 
         <TextView
             android:id="@+id/textViewDescriptionTitle"
@@ -101,25 +83,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewArticle" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPagerImagesArticle"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/imagesArticleDetail"
             android:layout_width="match_parent"
-            android:layout_height="162dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/carouselViewImgProduct"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.synnapps.carouselview.CarouselView
-            android:id="@+id/carouselViewImgProduct"
-            android:layout_width="match_parent"
-            android:layout_height="374dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </com.synnapps.carouselview.CarouselView>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="7"
+            tools:listitem="@layout/image_detail" />
 
         <Button
             android:id="@+id/btnComprar"
@@ -165,58 +138,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.908"
             app:layout_constraintStart_toEndOf="@+id/textViewArticleQuantitySold"
-            app:layout_constraintTop_toBottomOf="@+id/carouselViewImgProduct"
+            app:layout_constraintTop_toBottomOf="@+id/imagesArticleDetail"
             app:srcCompat="@drawable/ic_share_product" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
-
-    <!--  <EditText
-    android:id="@+id/editTextProductoBuscar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="116dp"
-    android:hint="Producto"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />-->
-    <!--    <Button
-            android:id="@+id/btnBuscar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Buscar"
-            app:layout_constraintTop_toBottomOf="@+id/editTextProductoBuscar"
-            tools:layout_editor_absoluteX="-16dp" />-->
-    <!--    <ImageView
-            android:id="@+id/imageViewProducto"
-            android:layout_width="208dp"
-            android:layout_height="193dp"
-            android:layout_marginTop="48dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.453"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewArticle" />-->
-
-    <!--    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/carouselViewImgProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
-            app:layout_constraintVertical_bias="0.455"
-            tools:listitem="@layout/img_article"/>-->
-
-    <!-- <androidx.viewpager.widget.ViewPager
-          android:id="@+id/viewPagerImgProduct"
-          android:layout_width="225dp"
-          android:layout_height="223dp"
-          app:layout_constraintBottom_toTopOf="@+id/btnIrABuscarArticulos"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/btnBuscar"
-          app:layout_constraintVertical_bias="0.455">
-
-      </androidx.viewpager.widget.ViewPager>-->

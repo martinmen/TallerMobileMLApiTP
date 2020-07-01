@@ -26,4 +26,6 @@
     <string name="favorite">favvv</string>
     <string name="descripcionTitle">Descripcion:</string>
     <string name="logoMeliImg">https://http2.mlstatic.com/frontend-assets/ui-navigation/5.6.0/mercadolibre/logo__large_plus.png</string>
+    <string name="pocos_disponibles">Pocos disponibles</string>
+    <string name="disponibles">\"Disponibles: \"</string>
 </resources>

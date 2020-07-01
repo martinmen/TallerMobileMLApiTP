@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                 when (response.code()) {
                     in 200..299 -> {
                         currentSearch = response.body()!!
-                        setAlbumValues(response.body()!!)
+                        setArticleValues(response.body()!!)
                     }
                     404 -> Toast.makeText(
                         this@MainActivity,
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setAlbumValues(body: SearchResult) {
+    private fun setArticleValues(body: SearchResult) {
         if (body.paging.total > 0) {
             adapter.articleList = body.results
         } else {
