@@ -1,10 +1,11 @@
 package com.example.tallermobiletpmlapi
 
+import android.content.Context
 import com.example.tallermobiletpmlapi.entities.DescriptionArticle
 import android.content.Intent
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebastp.data.Api
@@ -59,64 +60,115 @@ class ArticleDetailActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        buscarArticleDetails()
-        buscarDesc()
+
+        if (!isConnectedInternet()) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        } else
+            buscarArticleDetails()
+    }
+
+    private fun isConnectedInternet(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = cm.activeNetworkInfo
+        val isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting
+        if (!isConnected) {
+            Toast.makeText(this, getString(R.string.InternetNotAviable), Toast.LENGTH_LONG).show()
+            return false
+        }
+        return true
     }
 
     private fun buscarArticleDetails() {
-        Api().getArticle(IdArticle, object : Callback<Article> {
+        if (isConnectedInternet()){
+        Api().getArticle(IdArticle, object : retrofit2.Callback<Article> {
             override fun onFailure(call: Call<Article>, t: Throwable) {
-                Log.e(TAG, "Search call failed", t)
+                //      Log.e(TAG, R.string.search_call_error.toString(), t)
             }
 
             override fun onResponse(call: Call<Article>, response: Response<Article>) {
-                if (response.isSuccessful) {
-                    var article = response.body()
-                    textViewArticle.text = "${article?.title}"
-                    textViewArticlePrice.text = "$ ${article?.price.toString()}"
-                    textViewArticleCondition.text =
-                        if (article?.condition.equals("new")) getString(R.string.estadoNuevoArticulo) else getString(
-                            R.string.estadoUsadoArticulo
-                        )
-                    textViewArticleQuantitySold.text =
-                        getString(R.string.vendidos).plus(article?.sold_quantity.toString())
-                    current = response.body()
-                    adapterImg.picturesList = article!!.pictures
-                } else {
-                    adapterImg.picturesList = ArrayList()
-                    Toast.makeText(
-                        this@ArticleDetailActivity,
-                        getString(R.string.errorArticuloNoEncontrado),
-                        Toast.LENGTH_LONG
-                    ).show()
+
+                when (response.code()) {
+                    in 200..299 -> {
+                        setArticleDetailsValues(response.body()!!)
+                        // Es un asco, lo voy a mejorar con animacion. Lo mismo cunado no se encuentran imagenes
+                        Toast.makeText(
+                            this@ArticleDetailActivity,
+                            getString(R.string.Loading),
+                            Toast.LENGTH_LONG
+                        ).show()
+                        buscarDesc()
+                    }
+                    else -> {
+                        Toast.makeText(
+                            this@ArticleDetailActivity,
+                            getString(ConnectionChecker.getResponseCodeDesc(response.code())),
+                            Toast.LENGTH_LONG
+                        ).show()
+                        val intent = Intent(this@ArticleDetailActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
                 adapterImg.notifyDataSetChanged()
             }
+
         })
+        }
+    }
 
-
+    private fun setArticleDetailsValues(articleDetail: Article) {
+        var article = articleDetail
+        textViewArticle.text = "${article?.title}"
+        textViewArticlePrice.text = "$ ${article?.price.toString()}"
+        textViewArticleCondition.text =
+            if (article?.condition.equals("new")) getString(R.string.estadoNuevoArticulo) else getString(
+                R.string.estadoUsadoArticulo
+            )
+        textViewArticleQuantitySold.text =
+            getString(R.string.vendidos).plus(article?.sold_quantity.toString())
+        current = articleDetail
+        adapterImg.picturesList = article!!.pictures
     }
 
     fun buscarDesc() {
-        Api().getArticleDescription(IdArticle, object : Callback<Array<DescriptionArticle>> {
-            override fun onFailure(call: Call<Array<DescriptionArticle>>, t: Throwable) {
-                Log.e(TAG, "Search call failed", t)
-            }
-
-            override fun onResponse(
-                call: Call<Array<DescriptionArticle>>,
-                response: Response<Array<DescriptionArticle>>
-            ) {
-
-                if (response.isSuccessful) {
-                    var articleDesc = response.body()
-                    textViewArticleDescriptionBody.text = "${articleDesc?.get(0)?.plain_text}"
-
+        if (isConnectedInternet()){
+            Api().getArticleDescription(IdArticle, object : Callback<Array<DescriptionArticle>> {
+                override fun onFailure(call: Call<Array<DescriptionArticle>>, t: Throwable) {
+                    Toast.makeText(
+                        this@ArticleDetailActivity,
+                        getString(R.string.search_call_error),
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
-            }
+                override fun onResponse(
+                    call: Call<Array<DescriptionArticle>>,
+                    response: Response<Array<DescriptionArticle>>
+                ) {
 
-        })
+                    when (response.code()) {
+                        in 200..299 -> {
+                            var articleDesc = response.body()
+                            textViewArticleDescriptionBody.text =
+                                "${articleDesc?.get(0)?.plain_text}"
+                        }
+                        else -> {
+                            Toast.makeText(
+                                this@ArticleDetailActivity,
+                                "Descripcion del Articulo no encontrada",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            // Podrias aplicar esto pero muestra por un instante los datos de la otra llamada y queda mal.
+                            // Tengo que implementar algo mejor en el diseño, para le reentraga lo hago.
+                            /*Toast.makeText(this@ArticleDetailActivity, getString(ConnectionChecker.getResponseCodeDesc(response.code())),Toast.LENGTH_LONG).show()
+                        val intent = Intent(this@ArticleDetailActivity, MainActivity::class.java)
+                        startActivity(intent)*/
+                        }
+                    }
+                }
+
+            })
+        }
     }
 
     companion object {

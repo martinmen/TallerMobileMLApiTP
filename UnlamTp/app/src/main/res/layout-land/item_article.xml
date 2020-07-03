@@ -7,8 +7,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/dataContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="686dp"
+        android:layout_height="163dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -20,12 +20,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/articleImage"
-                android:layout_width="130dp"
-                android:layout_height="219dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
                 android:maxHeight="300dp"
                 android:minHeight="150dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -39,22 +39,24 @@
                 android:layout_width="110dp"
                 android:layout_height="20dp"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textAlignment="textStart"
+                app:layout_constraintBottom_toTopOf="@+id/ArticleConditionTextView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.456"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/articleImage"
                 app:layout_constraintTop_toBottomOf="@+id/ArticleDescription"
+                app:layout_constraintVertical_bias="0.333"
                 tools:text="0000.00" />
 
             <TextView
                 android:id="@+id/ArticleDescription"
                 android:layout_width="235dp"
                 android:layout_height="36dp"
-                android:layout_marginTop="44dp"
+                app:layout_constraintBottom_toBottomOf="@+id/articleImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/articleImage"
                 app:layout_constraintTop_toTopOf="@+id/articleImage"
+                app:layout_constraintVertical_bias="0.213"
                 tools:text="Description" />
 
             <TextView
@@ -66,8 +68,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/articleImage"
-                app:layout_constraintTop_toBottomOf="@+id/articlePrice"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="@+id/articleImage"
+                app:layout_constraintVertical_bias="0.709" />
 
             <TextView
                 android:id="@+id/ArticleaAviableQuantityTextView"
@@ -77,9 +79,9 @@
                 app:layout_constraintBottom_toBottomOf="@+id/articleImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/ArticleConditionTextView"
+                app:layout_constraintStart_toEndOf="@+id/articleImage"
                 app:layout_constraintTop_toBottomOf="@+id/ArticleConditionTextView"
-                app:layout_constraintVertical_bias="0.009" />
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

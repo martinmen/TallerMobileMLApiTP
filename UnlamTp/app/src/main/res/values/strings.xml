@@ -5,7 +5,7 @@
     <string name="not_found">No se encontraron resultados</string>
     <string name="server_error">Ocurrio un error en el servidor</string>
     <string name="bad_request">Su solicitud fue incorrecta</string>
-    <string name="unknown_error">Error desconocido</string>
+    <string name="unknown_error">Error desconocido por favor informarlo</string>
     <string name="resource_not_found">No se encontro el recurso</string>
     <string name="loading">Cargando</string>
     <string name="comprar">Comprar Ahora</string>
@@ -28,4 +28,9 @@
     <string name="logoMeliImg">https://http2.mlstatic.com/frontend-assets/ui-navigation/5.6.0/mercadolibre/logo__large_plus.png</string>
     <string name="pocos_disponibles">Pocos disponibles</string>
     <string name="disponibles">\"Disponibles: \"</string>
+    <string name="InternetNotAviable">No hay una conexión a internet</string>
+    <string name="_body">Descripcion Articulo</string>
+    <string name="conditions_article">Conditions</string>
+    <string name="search_call_error">Hubo un error en la búsqueda</string>
+    <string name="Loading">Cargando...</string>
 </resources>
