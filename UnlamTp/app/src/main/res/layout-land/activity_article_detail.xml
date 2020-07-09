@@ -11,7 +11,15 @@
         android:layout_height="match_parent"
         tools:context=".ArticleDetailActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ProgressBar
+            android:id="@+id/progressBarD"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            tools:visibility="visible" />
+          <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/imagesArticleDetail"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -25,7 +33,7 @@
             android:id="@+id/textViewArticleCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Conditions"
+            android:text="@string/conditions"
             app:layout_constraintBottom_toTopOf="@+id/textViewArticle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -37,7 +45,7 @@
             android:id="@+id/textViewArticleQuantitySold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quantity sold"
+            android:text="@string/quantity_sold"
             app:layout_constraintBottom_toTopOf="@+id/textViewArticle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -51,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="Titulo Articulo"
+            android:text="@string/titulo_articulo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

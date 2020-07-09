@@ -1,4 +1,6 @@
-package com.example.tallermobiletpmlapi
+package com.example.tallermobiletpmlapi.utils
+
+import com.example.tallermobiletpmlapi.R
 
 class ConnectionChecker {
     companion object {
@@ -26,8 +28,6 @@ class ConnectionChecker {
     }
 }
 /*/ CONSULTAR COMO PODRIA HACERLO: NECESITO EL CONTEXTO
-companion object{
-
     private  fun checkConnection(): Boolean {
         val cm = getSystemService(Context.ACCESSIBILITY_SERVICE as Context) as ConnectivityManager
         val activeNetwork = cm.activeNetworkInfo

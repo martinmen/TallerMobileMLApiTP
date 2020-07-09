@@ -18,6 +18,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <ProgressBar
+                android:id="@+id/progressBarD"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible" />
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/imagesArticleDetail"
                 android:layout_width="match_parent"
@@ -55,7 +63,7 @@
                         android:id="@+id/textViewArticleQuantitySold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Quantity sold"
+                        android:text="@string/quantity_sold"
                         android:layout_marginLeft="10dp"
                         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -73,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="48dp"
-                    android:text="Titulo Articulo"
+                    android:text="@string/titulo_articulo"
                     android:layout_marginEnd="50dp" />
 
                 <TextView
@@ -126,17 +134,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/btnComprar"
                     app:layout_constraintVertical_bias="0.0" />
 
-                <Button
-                    android:id="@+id/btnIrBuscarArticulos"
-                    android:layout_width="151dp"
-                    android:layout_height="59dp"
-                    android:layout_marginBottom="672dp"
-                    android:text="@string/ir_a_buscar_articulos"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
+
 
 
             </LinearLayout>

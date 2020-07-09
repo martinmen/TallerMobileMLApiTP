@@ -33,4 +33,9 @@
     <string name="conditions_article">Conditions</string>
     <string name="search_call_error">Hubo un error en la búsqueda</string>
     <string name="Loading">Cargando...</string>
+    <string name="quantity_sold">Quantity sold</string>
+    <string name="titulo_articulo">Titulo Articulo</string>
+    <string name="conditions">Conditions</string>
+    <string name="desc_art_not_found">Descripcion del Articulo no encontrada</string>
+    <string name="error_search_details_article">Hubo un error con el articulo seleccionado. Por favor seleccionar otro</string>
 </resources>

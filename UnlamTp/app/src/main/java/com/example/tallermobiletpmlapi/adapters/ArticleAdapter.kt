@@ -4,9 +4,12 @@ import Results
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tallermobiletpmlapi.R
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.item_article.*
 import kotlinx.android.synthetic.main.item_article.view.*
 
 class ArticleAdapter(val onItemDetailViewClick: (articulos: Results) -> Unit) :
@@ -27,6 +30,7 @@ class ArticleAdapter(val onItemDetailViewClick: (articulos: Results) -> Unit) :
         return articleList.size
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         articleList[position].let { article ->
             holder.itemView.ArticleDescription.text = articleList[position].title
@@ -46,6 +50,8 @@ class ArticleAdapter(val onItemDetailViewClick: (articulos: Results) -> Unit) :
                         "https"
                     )
                 )
+                .placeholder(R.drawable.progress_animation)
+                .error(R.drawable.try_later)
                 .into(holder.itemView.articleImage)
             holder.itemView.setOnClickListener {
                 onItemDetailViewClick(articleList[position])

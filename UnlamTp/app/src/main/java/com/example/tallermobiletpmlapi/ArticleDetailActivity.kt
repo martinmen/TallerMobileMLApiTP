@@ -6,12 +6,15 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebastp.data.Api
 import com.example.tallermobiletpmlapi.adapters.ImageArticleAdapter
 import com.example.tallermobiletpmlapi.entities.Article
+import com.example.tallermobiletpmlapi.utils.ConnectionChecker
 import kotlinx.android.synthetic.main.activity_article_detail.*
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,21 +34,7 @@ class ArticleDetailActivity : AppCompatActivity() {
 
         imagesArticleDetail.layoutManager = LinearLayoutManager(this)
         imagesArticleDetail.adapter = adapterImg
-        /*       val navigationView = findViewById<View>(R.id.btnNavigation) as BottomNavigationView
-               navigationView.setOnNavigationItemSelectedListener { item ->
-                   when (item.itemId) {
-                       R.id.busquedaNav -> {
-                           intent = Intent(this, MainActivity::class.java)
-                           startActivity(intent)
-                       }
-                       R.id.detalleNav -> {
-                           intent = Intent(this, ArticleDetailActivity::class.java)
-                           intent.putExtra("idArticle", IdArticle)
-                           startActivity(intent)
-                       }
-                   }
-                   true
-               }*/
+
         imgBtnShare.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -54,11 +43,6 @@ class ArticleDetailActivity : AppCompatActivity() {
             }
             val shareIntent = Intent.createChooser(sendIntent, getString(R.string.compartirMensaje))
             startActivity(shareIntent)
-        }
-
-        btnIrBuscarArticulos.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
         }
 
         if (!isConnectedInternet()) {
@@ -80,65 +64,77 @@ class ArticleDetailActivity : AppCompatActivity() {
     }
 
     private fun buscarArticleDetails() {
-        if (isConnectedInternet()){
-        Api().getArticle(IdArticle, object : retrofit2.Callback<Article> {
-            override fun onFailure(call: Call<Article>, t: Throwable) {
-                //      Log.e(TAG, R.string.search_call_error.toString(), t)
-            }
+        if (isConnectedInternet()) {
+            loading()
 
-            override fun onResponse(call: Call<Article>, response: Response<Article>) {
+            Api().getArticle(IdArticle, object : retrofit2.Callback<Article> {
+                override fun onFailure(call: Call<Article>, t: Throwable) {
+                    //      Log.e(TAG, R.string.search_call_error.toString(), t)
+                    Toast.makeText(
+                        this@ArticleDetailActivity,
+                        getString(R.string.error_search_details_article),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    loading()
+                        finish()
 
-                when (response.code()) {
-                    in 200..299 -> {
-                        setArticleDetailsValues(response.body()!!)
-                        // Es un asco, lo voy a mejorar con animacion. Lo mismo cunado no se encuentran imagenes
-                        Toast.makeText(
-                            this@ArticleDetailActivity,
-                            getString(R.string.Loading),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        buscarDesc()
-                    }
-                    else -> {
-                        Toast.makeText(
-                            this@ArticleDetailActivity,
-                            getString(ConnectionChecker.getResponseCodeDesc(response.code())),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        val intent = Intent(this@ArticleDetailActivity, MainActivity::class.java)
-                        startActivity(intent)
-                    }
                 }
-                adapterImg.notifyDataSetChanged()
-            }
 
-        })
+                override fun onResponse(call: Call<Article>, response: Response<Article>) {
+
+                    when (response.code()) {
+                        in 200..299 -> {
+                            setArticleDetailsValues(response.body()!!)
+                            buscarDesc()
+
+                        }
+                        else -> {
+                            Toast.makeText(
+                                this@ArticleDetailActivity,
+                                getString(ConnectionChecker.getResponseCodeDesc(response.code())),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            val intent =
+                                Intent(this@ArticleDetailActivity, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
+                    loading(response.isSuccessful)
+
+                    adapterImg.notifyDataSetChanged()
+                }
+
+            })
         }
     }
 
     private fun setArticleDetailsValues(articleDetail: Article) {
         var article = articleDetail
-        textViewArticle.text = "${article?.title}"
+        textViewArticle.text = article.title
         textViewArticlePrice.text = "$ ${article?.price.toString()}"
         textViewArticleCondition.text =
-            if (article?.condition.equals("new")) getString(R.string.estadoNuevoArticulo) else getString(
+            if (article.condition.equals("new")) getString(R.string.estadoNuevoArticulo) else getString(
                 R.string.estadoUsadoArticulo
             )
         textViewArticleQuantitySold.text =
-            getString(R.string.vendidos).plus(article?.sold_quantity.toString())
+            getString(R.string.vendidos).plus(article.sold_quantity.toString())
         current = articleDetail
-        adapterImg.picturesList = article!!.pictures
+        adapterImg.picturesList = article.pictures
     }
 
     fun buscarDesc() {
-        if (isConnectedInternet()){
+        if (isConnectedInternet()) {
             Api().getArticleDescription(IdArticle, object : Callback<Array<DescriptionArticle>> {
                 override fun onFailure(call: Call<Array<DescriptionArticle>>, t: Throwable) {
                     Toast.makeText(
                         this@ArticleDetailActivity,
-                        getString(R.string.search_call_error),
+                        getString(R.string.error_search_details_article),
                         Toast.LENGTH_LONG
                     ).show()
+                    // me parece mas practico que ante un error como este que evita la carga del producto.
+                    // Avise y lo mande directo a la actitity anterior ahorrandole un movimiento al usuario
+                    finish()
+
                 }
 
                 override fun onResponse(
@@ -155,19 +151,21 @@ class ArticleDetailActivity : AppCompatActivity() {
                         else -> {
                             Toast.makeText(
                                 this@ArticleDetailActivity,
-                                "Descripcion del Articulo no encontrada",
+                                getString(R.string.desc_art_not_found),
                                 Toast.LENGTH_LONG
                             ).show()
-                            // Podrias aplicar esto pero muestra por un instante los datos de la otra llamada y queda mal.
-                            // Tengo que implementar algo mejor en el diseño, para le reentraga lo hago.
-                            /*Toast.makeText(this@ArticleDetailActivity, getString(ConnectionChecker.getResponseCodeDesc(response.code())),Toast.LENGTH_LONG).show()
-                        val intent = Intent(this@ArticleDetailActivity, MainActivity::class.java)
-                        startActivity(intent)*/
                         }
                     }
                 }
 
             })
+        }
+    }
+    private fun loading(Results: Boolean = false) {
+        if (progressBarD.visibility == View.VISIBLE) {
+            progressBarD.visibility = View.GONE
+        } else {
+            progressBarD.visibility = View.VISIBLE
         }
     }
 

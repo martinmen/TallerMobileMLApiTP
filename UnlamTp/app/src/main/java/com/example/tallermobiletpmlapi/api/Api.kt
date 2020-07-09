@@ -10,10 +10,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Api {
+    private val oldValue = " "
+    private val newValue = "%20"
+    private val baseUrlApiMLA = "https://api.mercadolibre.com"
 
     fun getApi(): MercadoLibreAPI {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.mercadolibre.com")
+            .baseUrl(baseUrlApiMLA)
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
         return retrofit.create(MercadoLibreAPI::class.java)
@@ -31,6 +34,6 @@ class Api {
     }
 
     fun getListArticle(q: String, callback: Callback<SearchResult>) {
-        getApi().search(q.replace(" ", "%20")).enqueue(callback)
+        getApi().search(q.replace(oldValue, newValue)).enqueue(callback)
     }
 }

@@ -30,6 +30,8 @@ class ImageArticleAdapter : RecyclerView.Adapter<ImageArticleAdapter.ViewHolder>
         picturesList[position].let { pictures ->
             Picasso.get()
                 .load(pictures.secure_url)
+                .placeholder(R.drawable.progress_animation)
+                .error(R.drawable.try_later)
                 .into(holder.itemView.articleListImage)
         }
     }
